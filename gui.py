@@ -183,7 +183,7 @@ class Application(tk.Frame):
         self.winProbLbl.grid(row = self.rowBidenProb, column = 1)
 
         self.runBtn = tk.Button(self)
-        self.runBtn["text"] = "Run NIGHTMARE"
+        self.runBtn["text"] = "Run Sim"
         self.runBtn["command"] = self.runModel
         self.runBtn["bg"] = "red"
         self.runBtn.grid(row = self.rowOptions, column = 1)
