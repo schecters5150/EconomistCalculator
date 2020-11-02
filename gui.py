@@ -4,19 +4,23 @@ import os
 class Application(tk.Frame):
     
     
-    rowPA = 2
-    rowWI = 3
-    rowMI = 4
-    rowFL = 5
-    rowNC = 6
-    rowGA = 7
-    rowAZ = 8
-    rowTX = 9
+    rowPA = 3
+    rowWI = 4
+    rowMI = 5
+    rowME = 6
+    rowME1 = 7
+    rowME2 = 8
+    rowNE1 = 9
+    rowFL = 10
+    rowNC = 11
+    rowGA = 12
+    rowAZ = 13
+    rowTX = 14
 
 
 
-    rowBidenProb = 10
-    rowOptions = 11
+    rowBidenProb = 20
+    rowOptions = 21
 
 #declare globals
     PA = 0
@@ -27,6 +31,10 @@ class Application(tk.Frame):
     GA = 0
     AZ = 0
     TX = 0
+    ME = 0
+    ME1 = 0
+    ME2 = 0
+    NE1 = 0
 
 
     def __init__(self, master=None):
@@ -49,15 +57,27 @@ class Application(tk.Frame):
         self.azText = tk.StringVar()
         self.gaText = tk.StringVar()
         self.txText = tk.StringVar()
+        self.meText = tk.StringVar()
+        self.me1Text = tk.StringVar()
+        self.me2Text = tk.StringVar()
+        self.ne1Text = tk.StringVar()
 
         CURR_DIR = os.path.dirname(os.path.realpath(__file__))
         winProb = open(CURR_DIR + "/win.txt", 'r')
         self.bidenProbText.set("Biden's win probability is " + winProb.read())
         winProb.close()
 
+        self.title2020Lbl = tk.Label(self)
+        self.title2020Lbl["text"] = "election 2020"
+        self.title2020Lbl.grid(row = 1, column = 1)
+
         self.titleLbl = tk.Label(self)
-        self.titleLbl["text"] = "low effort economist calculator"
-        self.titleLbl.grid(row = 1, column = 1)
+        self.titleLbl["text"] = "rachel's hi effort economist calculator   "
+        self.titleLbl.grid(row = 1, column = 2)
+
+        self.titleSpaceLbl = tk.Label(self)
+        self.titleSpaceLbl["text"] = " "
+        self.titleSpaceLbl.grid(row = 2, column = 2)
 
         self.paBtn = tk.Button(self)
         self.paBtn["text"] = "Pennsylvania"
@@ -125,6 +145,38 @@ class Application(tk.Frame):
         self.txLbl["textvariable"] = self.txText
         self.txLbl.grid(row = self.rowTX, column = 2)
 
+        self.meBtn = tk.Button(self)
+        self.meBtn["text"] = "Maine"
+        self.meBtn["command"] = self.meBtnEvent
+        self.meBtn.grid(row = self.rowME, column = 1)
+        self.meLbl = tk.Label(self)
+        self.meLbl["textvariable"] = self.meText
+        self.meLbl.grid(row = self.rowME, column = 2)
+
+        self.me1Btn = tk.Button(self)
+        self.me1Btn["text"] = "Maine 1"
+        self.me1Btn["command"] = self.me1BtnEvent
+        self.me1Btn.grid(row = self.rowME1, column = 1)
+        self.me1Lbl = tk.Label(self)
+        self.me1Lbl["textvariable"] = self.me1Text
+        self.me1Lbl.grid(row = self.rowME1, column = 2)
+
+        self.me2Btn = tk.Button(self)
+        self.me2Btn["text"] = "Maine 2"
+        self.me2Btn["command"] = self.me2BtnEvent
+        self.me2Btn.grid(row = self.rowME2, column = 1)
+        self.me2Lbl = tk.Label(self)
+        self.me2Lbl["textvariable"] = self.me2Text
+        self.me2Lbl.grid(row = self.rowME2, column = 2)
+
+        self.ne1Btn = tk.Button(self)
+        self.ne1Btn["text"] = "Nebreska 1"
+        self.ne1Btn["command"] = self.ne1BtnEvent
+        self.ne1Btn.grid(row = self.rowNE1, column = 1)
+        self.ne1Lbl = tk.Label(self)
+        self.ne1Lbl["textvariable"] = self.ne1Text
+        self.ne1Lbl.grid(row = self.rowNE1, column = 2)
+
 
         self.winProbLbl = tk.Label(self)
         self.winProbLbl["textvariable"] = self.bidenProbText
@@ -143,8 +195,10 @@ class Application(tk.Frame):
 
     def updateWinProbLbl(self):
         CURR_DIR = os.path.dirname(os.path.realpath(__file__))
-        winProb = open(CURR_DIR + "/win.txt", 'r')
+        winProb = open(CURR_DIR + "/win.met", 'r')
         self.bidenProbText.set(winProb.read())
+
+
         
     def paBtnEvent(self):
         PA = self.PA
@@ -154,7 +208,7 @@ class Application(tk.Frame):
         self.PA = PA 
         
         if PA == 0:
-            self.paText.set("Confusion")
+            self.paText.set("Undecided")
         if PA == 1:
             self.paText.set("Biden Win")
         if PA == 2:
@@ -168,7 +222,7 @@ class Application(tk.Frame):
         self.FL = FL 
         
         if FL == 0:
-            self.flText.set("Confusion")
+            self.flText.set("Undecided")
         if FL == 1:
             self.flText.set("Biden Win")
         if FL == 2:
@@ -182,7 +236,7 @@ class Application(tk.Frame):
         self.WI = WI 
         
         if WI == 0:
-            self.wiText.set("Confusion")
+            self.wiText.set("Undecided")
         if WI == 1:
             self.wiText.set("Biden Win")
         if WI == 2:
@@ -196,7 +250,7 @@ class Application(tk.Frame):
         self.MI = MI 
         
         if MI == 0:
-            self.miText.set("Confusion")
+            self.miText.set("Undecided")
         if MI == 1:
             self.miText.set("Biden Win")
         if MI == 2:
@@ -211,7 +265,7 @@ class Application(tk.Frame):
         print(NC)
 
         if NC == 0:
-            self.ncText.set("Confusion")
+            self.ncText.set("Undecided")
         if NC == 1:
             self.ncText.set("Biden Win")
         if NC == 2:
@@ -226,7 +280,7 @@ class Application(tk.Frame):
         print(AZ)
 
         if AZ == 0:
-            self.azText.set("Confusion")
+            self.azText.set("Undecided")
         if AZ == 1:
             self.azText.set("Biden Win")
         if AZ == 2:
@@ -241,7 +295,7 @@ class Application(tk.Frame):
         print(GA)
 
         if GA == 0:
-            self.gaText.set("Confusion")
+            self.gaText.set("Undecided")
         if GA == 1:
             self.gaText.set("Biden Win")
         if GA == 2:
@@ -256,11 +310,72 @@ class Application(tk.Frame):
         print(TX)
 
         if TX == 0:
-            self.txText.set("Confusion")
+            self.txText.set("Undecided")
         if TX == 1:
             self.txText.set("Biden Win")
         if TX == 2:
             self.txText.set("Trump Win")
+
+    def meBtnEvent(self):
+        ME = self.ME
+        ME = ME + 1
+        if ME > 2:
+            ME = 0          
+        self.ME = ME 
+        print(ME)
+
+        if ME == 0:
+            self.meText.set("Undecided")
+        if ME == 1:
+            self.meText.set("Biden Win")
+        if ME == 2:
+            self.meText.set("Trump Win")
+
+    def me1BtnEvent(self):
+        ME1 = self.ME1
+        ME1 = ME1 + 1
+        if ME1 > 2:
+            ME1 = 0          
+        self.ME1 = ME1 
+        print(ME1)
+
+        if ME1 == 0:
+            self.me1Text.set("Undecided")
+        if ME1 == 1:
+            self.me1Text.set("Biden Win")
+        if ME1 == 2:
+            self.me1Text.set("Trump Win")
+
+    def me2BtnEvent(self):
+        ME2 = self.ME2
+        ME2 = ME2 + 1
+        if ME2 > 2:
+            ME2 = 0          
+        self.ME2 = ME2 
+        print(ME2)
+
+        if ME2 == 0:
+            self.me2Text.set("Undecided")
+        if ME2 == 1:
+            self.me2Text.set("Biden Win")
+        if ME2 == 2:
+            self.me2Text.set("Trump Win")
+
+    def ne1BtnEvent(self):
+        NE1 = self.NE1
+        NE1 = NE1 + 1
+        if NE1 > 2:
+            NE1 = 0          
+        self.NE1 = NE1 
+        print(NE1)
+
+        if NE1 == 0:
+            self.ne1Text.set("Undecided")
+        if NE1 == 1:
+            self.ne1Text.set("Biden Win")
+        if NE1 == 2:
+            self.ne1Text.set("Trump Win")
+
 
             
         
@@ -287,6 +402,14 @@ class Application(tk.Frame):
             bidenStates.write("AZ\n")
         if self.TX == 1:
             bidenStates.write("TX\n")
+        if self.ME == 1:
+            bidenStates.write("ME\n")
+        if self.ME1 == 1:
+            bidenStates.write("ME1\n")
+        if self.ME2 == 1:
+            bidenStates.write("ME2\n")
+        if self.NE1 == 1:
+            bidenStates.write("NE1\n")
 
 
         if self.PA == 2:
@@ -305,6 +428,14 @@ class Application(tk.Frame):
             trumpStates.write("AZ\n")
         if self.TX == 2:
             trumpStates.write("TX\n")
+        if self.ME == 2:
+            trumpStates.write("ME\n")
+        if self.ME1 == 2:
+            trumpStates.write("ME1\n")
+        if self.ME2 == 2:
+            trumpStates.write("ME2\n")
+        if self.NE1 == 2:
+            trumpStates.write("NE1\n")
 
         bidenStates.close()
         trumpStates.close()
