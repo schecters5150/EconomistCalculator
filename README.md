@@ -1,6 +1,6 @@
 # EconomistCalculator
 
-![alt text](https://imgur.com/zwDUs3j)
+![alt text](https://i.imgur.com/zwDUs3j.png)
 
 Runs on python 3.8 using tkinter and R. Only works on Unix for now
 
