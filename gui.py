@@ -197,6 +197,8 @@ class Application(tk.Frame):
         CURR_DIR = os.path.dirname(os.path.realpath(__file__))
         winProb = open(CURR_DIR + "/win.met", 'r')
         self.bidenProbText.set(winProb.read())
+        if PA+FL+WI+MI+NC+GA+NC+GA+AZ+TX+ME+ME1+ME2+ME3 > 26:
+            self.bidenProbText.set("JEB!")
 
 
         
@@ -445,6 +447,8 @@ class Application(tk.Frame):
         
         winProb = open(CURR_DIR + "/win.txt", 'r')
         self.bidenProbText.set("Biden's win probability is " + winProb.read())
+        if self.PA+self.FL+self.WI+self.MI+self.NC+self.GA+self.NC+self.GA+self.AZ+self.TX+self.ME+self.ME1+self.ME2+self.NE1 > 26:
+            self.bidenProbText.set("Biden's win probability is JEB!")
         winProb.close()
 
 root = tk.Tk()
