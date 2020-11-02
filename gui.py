@@ -18,7 +18,7 @@ class Application(tk.Frame):
     rowTX = 14
 
 
-
+    rowProbSpace = 19
     rowBidenProb = 20
     rowOptions = 21
 
@@ -67,16 +67,16 @@ class Application(tk.Frame):
         self.bidenProbText.set("Biden's win probability is " + winProb.read())
         winProb.close()
 
-        self.title2020Lbl = tk.Label(self)
-        self.title2020Lbl["text"] = "election 2020"
+        self.title2020Lbl = tk.Label(self, font=("Input", 18))
+        self.title2020Lbl["text"] = "Election 2020"
         self.title2020Lbl.grid(row = 1, column = 1)
 
-        self.titleLbl = tk.Label(self)
-        self.titleLbl["text"] = "rachel's hi effort economist calculator   "
+        self.titleLbl = tk.Label(self, font=("Input", 18))
+        self.titleLbl["text"] = "Economist State-by-State Calculator   "
         self.titleLbl.grid(row = 1, column = 2)
 
-        self.titleSpaceLbl = tk.Label(self)
-        self.titleSpaceLbl["text"] = " "
+        self.titleSpaceLbl = tk.Label(self, font=("Input", 8))
+        self.titleSpaceLbl["text"] = "By RH/Schecters5150"
         self.titleSpaceLbl.grid(row = 2, column = 2)
 
         self.paBtn = tk.Button(self)
@@ -181,6 +181,10 @@ class Application(tk.Frame):
         self.winProbLbl = tk.Label(self)
         self.winProbLbl["textvariable"] = self.bidenProbText
         self.winProbLbl.grid(row = self.rowBidenProb, column = 1)
+
+        self.winProbSpaceLbl = tk.Label(self)
+        self.winProbSpaceLbl["text"] = " "
+        self.winProbSpaceLbl.grid(row = self.rowProbSpace, column = 1)
 
         self.runBtn = tk.Button(self)
         self.runBtn["text"] = "Run Sim"
